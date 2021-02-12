@@ -25,7 +25,6 @@ export class UserBusiness {
       throw new CustomError(400, "'name', 'email', 'password' and 'role', must be informed!");
      }
 
-
      if (user.password.length < 6) {
          throw new CustomError(400, "Your password must have 6 characters at least")
      }
@@ -39,6 +38,12 @@ export class UserBusiness {
          user.role !== UserRole.NORMAL
       ) {
          throw new CustomError(400, "'role' must be 'NORMAL' or 'ADMIN'")
+      }
+
+      const userFromDB = await this.userDatabase.getUserByEmail(user.email);
+
+      if (userFromDB) {
+         throw new CustomError(400, "Email already exist!");
       }
 
       const id = this.idGenerator.generate();
