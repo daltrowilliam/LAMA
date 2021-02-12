@@ -39,7 +39,7 @@ export class ShowDatabase extends BaseDatabase {
    }
 
 
-   public async getShowByDay(week_day: string): Promise<Show> {
+   public async getShowByDay(week_day: string): Promise<any> {
       try {
          const result = await BaseDatabase.connection.raw(`
             SELECT bands.name, bands.music_genre FROM '${ShowDatabase.TABLE_NAME} shows'

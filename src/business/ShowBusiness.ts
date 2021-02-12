@@ -41,7 +41,6 @@ export class ShowBusiness {
          throw new CustomError(400, "A show can only be performed between 8 and 23 hours")
       }
 
-     
       const showsOfDay: [] = await this.showDatabase.verifyShowOfDay(show.week_day);
 
       const conflictShows = showsOfDay.filter((bookedShow) => {
@@ -83,7 +82,7 @@ export class ShowBusiness {
          throw new CustomError(400, "'week_day' must be 'FRIDAY', 'SATURDAY' or 'SUNDAY'")
       }
 
-      const result = await this.showDatabase.getShowByDay(week_day);
+      const result: [] = await this.showDatabase.getShowByDay(week_day);
 
       if (result.length === 0) {
          throw new CustomError(404, "There are no shows in this day!");
