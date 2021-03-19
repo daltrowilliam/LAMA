@@ -43,7 +43,10 @@ export class ShowBusiness {
 
       const showsOfDay: [] = await this.showDatabase.verifyShowOfDay(show.week_day);
 
-      const conflictShows = showsOfDay.filter((bookedShow) => {
+
+      // Funcionalidade de verificação de conflitos a ser implementada.
+
+      /* const conflictShows = showsOfDay.filter((bookedShow) => {
          if ((show.start_time >= bookedShow.start_time) && (show.start_time < bookedShow.end_time)) {
             return true
          } else {
@@ -56,7 +59,7 @@ export class ShowBusiness {
 
       if (conflictShows.length !== 0) {
          throw new CustomError(400, "There is already a show scheduled at this time")
-      }
+      } */
 
       const id = this.idGenerator.generate();
 
